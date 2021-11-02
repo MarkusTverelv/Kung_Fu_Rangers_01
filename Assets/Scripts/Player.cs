@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float gravity;
     public Vector2 velocity;
+    public float maxAcceleration = 10;
+    public float Acceleration = 10;
     public float jumpVelocity = 20;
     public float groundHeight = 10;
     public bool isGrounded = false;
