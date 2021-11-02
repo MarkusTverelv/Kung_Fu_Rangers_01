@@ -7,9 +7,14 @@ public class AIMovement : MonoBehaviour
     Rigidbody2D rb;
 
     public Transform targetTransform;
+    public LayerMask targetLayerMask;
+
+    public float moveSpeed;
+
     private Vector2 targetDirection = Vector2.zero;
     private float distanceToTarget = 0.0f;
-    public float moveSpeed;
+
+    private const int MAX_DISTANCE_TO_TARGET = 6;
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +32,14 @@ public class AIMovement : MonoBehaviour
     {
         distance = targetDirection.magnitude;
 
-        if (distance >= 2)
-        {
-            targetDirection.Normalize();
+        targetDirection.Normalize();
+
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position, targetDirection, distance, targetLayerMask);
+
+        if (distance >= MAX_DISTANCE_TO_TARGET && !hit)
+            rb.velocity = new Vector2(targetDirection.x * moveSpeed, rb.velocity.y);
+
+        else if (distance >= MAX_DISTANCE_TO_TARGET && hit)
             rb.velocity = targetDirection * moveSpeed;
-        }
     }
-
-
 }
