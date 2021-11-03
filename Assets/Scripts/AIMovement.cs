@@ -14,7 +14,7 @@ public class AIMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Transform targetTransform;
 
-    private const int MAX_DISTANCE_TO_TARGET = 4;
+    private const int MAX_DISTANCE_TO_TARGET = 6;
     private float distanceToTarget;
 
     private void Awake()
@@ -34,16 +34,21 @@ public class AIMovement : MonoBehaviour
         targetDirection = targetTransform.position - transform.position;
         distanceToTarget = targetDirection.magnitude;
 
-        MoveTowardsTarget(distanceToTarget);
         LookAtTarget(targetDirection);
+        MoveTowardsTarget(distanceToTarget);
     }
 
     private void MoveTowardsTarget(float distance)
     {
         targetDirection.Normalize();
 
-        if (distance >= MAX_DISTANCE_TO_TARGET)
+        if (distance > MAX_DISTANCE_TO_TARGET)
             rb.velocity = targetDirection * moveSpeed;
+
+        else if (distance <= MAX_DISTANCE_TO_TARGET)
+        {
+            transform.RotateAround(targetTransform.position, Vector3.forward, 50 * Time.deltaTime);
+        }
     }
 
     private void LookAtTarget(Vector2 dir)
