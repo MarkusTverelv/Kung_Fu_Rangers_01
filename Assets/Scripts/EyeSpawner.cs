@@ -30,9 +30,14 @@ public class EyeSpawner : MonoBehaviour
             }
         }
 
-        for (int i = 1; i < droneEyes.Count -1; i++)
+        for (int i = 0; i < droneEyes.Count - 1; i++)
         {
-            Vector2 direction = droneEyes[i].
+            Vector2 direction = droneEyes[i].transform.position - droneEyes[i + 1].transform.position;
+
+            if (direction.magnitude <= 1)
+            {
+                droneEyes[i].transform.Translate(direction.normalized * 20);
+            }
         }
     }
 

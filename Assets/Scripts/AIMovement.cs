@@ -12,7 +12,6 @@ public class AIMovement : MonoBehaviour
     public float moveSpeed;
 
     private Vector2 targetDirection = Vector2.zero;
-    private float distanceToTarget = 0.0f;
 
     private const int MAX_DISTANCE_TO_TARGET = 4;
 
@@ -32,12 +31,12 @@ public class AIMovement : MonoBehaviour
     {
         targetDirection = targetTransform.position - this.transform.position;
 
-        MoveTowardsTarget(distanceToTarget);
+        MoveTowardsTarget();
         LookAtTarget(targetDirection);
     }
-    private void MoveTowardsTarget(float distance)
+    private void MoveTowardsTarget()
     {
-        distance = targetDirection.magnitude;
+        float distance = targetDirection.magnitude;
         targetDirection.Normalize();
 
          if (distance >= MAX_DISTANCE_TO_TARGET)
