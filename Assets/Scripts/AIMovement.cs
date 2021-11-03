@@ -5,17 +5,17 @@ using UnityEngine;
 public class AIMovement : MonoBehaviour
 {
     public GameObject laser;
-    public LayerMask targetLayerMask;
     public Vector2 targetDirection = Vector2.zero;
 
     public float moveSpeed;
     public float fireRate;
     public float timer;
 
-    private const int MAX_DISTANCE_TO_TARGET = 4;
-
     private Rigidbody2D rb;
     private Transform targetTransform;
+
+    private const int MAX_DISTANCE_TO_TARGET = 4;
+    private float distanceToTarget;
 
     private void Awake()
     {
@@ -32,36 +32,40 @@ public class AIMovement : MonoBehaviour
     void Update()
     {
         targetDirection = targetTransform.position - transform.position;
+        distanceToTarget = targetDirection.magnitude;
 
-        timer += Time.deltaTime;
-
-        if (timer >= fireRate)
-            FireLaser(laser);
-
-        MoveTowardsTarget();
+        MoveTowardsTarget(distanceToTarget);
         LookAtTarget(targetDirection);
     }
-    private void MoveTowardsTarget()
+
+    private void MoveTowardsTarget(float distance)
     {
-        float distance = targetDirection.magnitude;
         targetDirection.Normalize();
 
         if (distance >= MAX_DISTANCE_TO_TARGET)
             rb.velocity = targetDirection * moveSpeed;
     }
+
     private void LookAtTarget(Vector2 dir)
     {
         float lookAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         rb.rotation = lookAngle;
     }
-    private void FireLaser(GameObject laser)
+
+    private void OnTriggerStay2D(Collider2D other)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, targetDirection, 10, targetLayerMask);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            timer += Time.deltaTime;
 
-        if (hit)
-            Instantiate(laser, transform.position, transform.rotation);
-
-        timer = 0.0f;
+            if (timer >= fireRate)
+                FireLaser(laser);
+        }
     }
 
+    private void FireLaser(GameObject laser)
+    {
+        Instantiate(laser, this.transform.Find("FirePoint").position, transform.rotation);
+        timer = 0.0f;
+    }
 }

@@ -18,9 +18,7 @@ public class EyeSpawner : MonoBehaviour
             droneEyes.Add(eyeDrone);
 
             foreach (GameObject eye in droneEyes)
-            {
                 SpawnEyes(eye, spawnPoint);
-            }
         }
 
         for (int i = 0; i < droneEyes.Count - 1; i++)
@@ -28,9 +26,7 @@ public class EyeSpawner : MonoBehaviour
             Vector2 direction = droneEyes[i].transform.position - droneEyes[i + 1].transform.position;
 
             if (direction.magnitude <= 1)
-            {
                 droneEyes[i].transform.Translate(direction);
-            }
         }
     }
 
