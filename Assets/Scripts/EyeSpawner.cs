@@ -6,14 +6,7 @@ public class EyeSpawner : MonoBehaviour
 {
     public GameObject eyeDrone;
     public Transform spawnPoint;
-
     public List<GameObject> droneEyes = new List<GameObject>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -36,7 +29,7 @@ public class EyeSpawner : MonoBehaviour
 
             if (direction.magnitude <= 1)
             {
-                droneEyes[i].transform.Translate(direction.normalized * 20);
+                droneEyes[i].transform.Translate(direction);
             }
         }
     }
