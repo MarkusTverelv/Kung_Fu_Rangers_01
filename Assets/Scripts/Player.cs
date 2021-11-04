@@ -99,6 +99,10 @@ public class Player : MonoBehaviour
             }
             Debug.DrawRay(rayOrigin, rayDirection * rayDirection, Color.red);
         }
+        else
+        {
+            SceneManager.LoadScene("GameOver");
+        }
 
         distance += velocity.x * Time.fixedDeltaTime;
 

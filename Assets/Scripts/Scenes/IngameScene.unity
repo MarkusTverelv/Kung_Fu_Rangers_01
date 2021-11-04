@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -10
   velocity: {x: 0, y: 0}
-  winDistant: 20000
+  winDistant: 100
   maxXVelocity: 100
   maxAcceleration: 10
   acceleration: 10
