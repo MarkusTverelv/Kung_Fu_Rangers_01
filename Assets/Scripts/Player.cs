@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 
         if (distance >= winDistant )
         {
-            SceneManager.LoadScene("Win");
+            SceneManager.LoadScene("WinScene");
         }
         if (isGrounded)
         {
