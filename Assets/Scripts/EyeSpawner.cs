@@ -5,7 +5,6 @@ using UnityEngine;
 public class EyeSpawner : MonoBehaviour
 {
     public GameObject eyeDrone;
-    public GameObject healthBar;
     public Transform spawnPoint;
 
     private List<GameObject> droneEyes = new List<GameObject>();
@@ -17,10 +16,7 @@ public class EyeSpawner : MonoBehaviour
         droneEyes.Add(eyeDrone);
 
         foreach (GameObject eye in droneEyes)
-        {
             SpawnEyes(eye, spawnPoint);
-            SpawnHealthBars(healthBar, eye.transform);
-        }
     }
 
     // Update is called once per frame
@@ -35,15 +31,12 @@ public class EyeSpawner : MonoBehaviour
             foreach (GameObject eye in droneEyes)
                 SpawnEyes(eye, spawnPoint);
         }
+        else
+            return;
     }
 
     private void SpawnEyes(GameObject eye, Transform spawn)
     {
         Instantiate(eye, new Vector2(spawn.position.x, spawn.position.y + Random.Range(-5, 5)), Quaternion.identity);
-    }
-
-    private void SpawnHealthBars(GameObject hpBar, Transform spawn)
-    {
-        Instantiate(hpBar, Camera.main.WorldToScreenPoint(new Vector3(spawn.position.x, spawn.position.y + .6f, spawn.position.z)), Quaternion.identity);
     }
 }

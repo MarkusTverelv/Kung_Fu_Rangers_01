@@ -457,7 +457,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -625,7 +625,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eyeDrone: {fileID: 8464489275583750391, guid: 671b79cd2a2b4b74f8e2f878f314808c, type: 3}
-  healthBar: {fileID: 0}
   spawnPoint: {fileID: 759902722}
 --- !u!4 &1547744697
 Transform:
