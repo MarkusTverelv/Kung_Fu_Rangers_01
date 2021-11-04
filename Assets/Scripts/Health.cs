@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -27,5 +27,9 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damageToTake;
         healthBar.fillAmount = CalculateHealth();
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }

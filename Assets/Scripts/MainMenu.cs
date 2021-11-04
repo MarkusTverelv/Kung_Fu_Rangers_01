@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MainManu : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public void NewGameButton()
     {
-        SceneManager.LoadScene(0);
+     SceneManager.LoadScene("IngameScene");
     }
 
     public void QuitButton()
