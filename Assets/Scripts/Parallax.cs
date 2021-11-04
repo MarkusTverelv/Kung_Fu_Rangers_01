@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-
+    
+    public bool hasSetValue;
     public float depth = 1;
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
+    public float resetX; 
 
     Player player;
 
@@ -14,22 +20,30 @@ public class Parallax : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
     }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
+        
         float realVelocity = player.velocity.x / depth;
         Vector2 pos = transform.position;
 
         pos.x -= realVelocity * Time.fixedDeltaTime;
+        if (hasSetValue)
+        {
+            if (pos.x <= -16)
+                pos.x = 17;
+        }
+        else
+        {
+            float numX = Random.Range(minX, maxX);
+            float numY = Random.Range(minY, maxY);
 
-        if (pos.x <= -17)
-            pos.x = 17;
-
+            if (pos.x <= resetX)
+            {
+                pos.x = numX;
+                pos.y = numY;
+            }
+        }
+        
         transform.position = pos;
     }
 }

@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public float gravity;
     public Vector2 velocity;
-    [SerializeField] private int winDistant;  
+
     public float maxXVelocity = 100;
     public float maxAcceleration = 10;
     public float acceleration = 10;
@@ -58,6 +58,11 @@ public class Player : MonoBehaviour
     {
         Vector2 pos = transform.position;
 
+        if (pos.y != groundHeight)
+        {
+            isGrounded = false;
+        }
+
         if (!isGrounded)
         {
             if (isHoldingJump)
@@ -82,11 +87,13 @@ public class Player : MonoBehaviour
             if (hit2D.collider != null)
             {
                 Ground ground = hit2D.collider.GetComponent<Ground>();
-                if (ground != null && !isGrounded)
+                if (ground != null)
                 {
-                    pos.y = groundHeight;
-                    velocity.y = 0;
-                    isGrounded = true;
+                    if (pos.y >= groundHeight)
+                    {
+                        velocity.y = 0;
+                        isGrounded = true;
+                    }
                 }
             }
             Debug.DrawRay(rayOrigin, rayDirection * rayDirection, Color.red);
@@ -94,10 +101,7 @@ public class Player : MonoBehaviour
 
         distance += velocity.x * Time.fixedDeltaTime;
 
-        if (distance >= winDistant )
-        {
-            SceneManager.LoadScene("WinScene");
-        }
+        
         if (isGrounded)
         {
             float velocityRatio = velocity.x / maxXVelocity;
