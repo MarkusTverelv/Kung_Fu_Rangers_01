@@ -13,8 +13,6 @@ public class Ground : MonoBehaviour
 
     bool didGenerateGround = false;
 
-    //public Obstacle boxTemplate;
-
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -46,7 +44,7 @@ public class Ground : MonoBehaviour
 
         if (groundRight < 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             return;
         }
 
@@ -95,21 +93,7 @@ public class Ground : MonoBehaviour
 
         Ground goGround = go.GetComponent<Ground>();
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
+        player.groundHeight = goGround.groundHeight;
 
-
-        int obstacleNum = Random.Range(0, 4);
-        for (int i = 0; i < obstacleNum; i++)
-        {
-            //GameObject box = Instantiate(boxTemplate.gameObject);
-            float y = goGround.groundHeight;
-            float halfWidth = goCollider.size.x / 2 - 1;
-            float left = go.transform.position.x - halfWidth;
-            float right = go.transform.position.x + halfWidth;
-            float x = Random.Range(left, right);
-            Vector2 boxPos = new Vector2(x, y);
-           // box.transform.position = boxPos;
-        }
     }
-
-
 }
