@@ -296,6 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laser: {fileID: 3826196112684786987, guid: ee120144c638ec241a620c575c5b94c8, type: 3}
+  healthBar: {fileID: 1082959512252368449, guid: ebb5a56b914bced45816b04eb4c5342d, type: 3}
   targetDirection: {x: 0, y: 0}
   moveSpeed: 4
   fireRate: 1

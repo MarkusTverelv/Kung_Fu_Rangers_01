@@ -5,6 +5,7 @@ using UnityEngine;
 public class AIMovement : MonoBehaviour
 {
     public GameObject laser;
+
     public Vector2 targetDirection = Vector2.zero;
 
     public float moveSpeed;
@@ -37,6 +38,11 @@ public class AIMovement : MonoBehaviour
         LookAtTarget(targetDirection);
         MoveTowardsTarget(distanceToTarget);
     }
+    private void LookAtTarget(Vector2 dir)
+    {
+        float lookAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        rb.rotation = lookAngle;
+    }
 
     private void MoveTowardsTarget(float distance)
     {
@@ -46,15 +52,7 @@ public class AIMovement : MonoBehaviour
             rb.velocity = targetDirection * moveSpeed;
 
         else if (distance <= MAX_DISTANCE_TO_TARGET)
-        {
             transform.RotateAround(targetTransform.position, Vector3.forward, 50 * Time.deltaTime);
-        }
-    }
-
-    private void LookAtTarget(Vector2 dir)
-    {
-        float lookAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        rb.rotation = lookAngle;
     }
 
     private void OnTriggerStay2D(Collider2D other)
