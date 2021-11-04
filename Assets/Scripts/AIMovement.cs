@@ -21,7 +21,7 @@ public class AIMovement : MonoBehaviour
 
     private void Awake()
     {
-        targetTransform = GameObject.Find("Target").transform;
+        targetTransform = GameObject.Find("Player").transform;
     }
 
     // Start is called before the first frame update

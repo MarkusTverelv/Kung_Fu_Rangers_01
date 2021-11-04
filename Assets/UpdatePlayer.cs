@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class UpdatePlayer : MonoBehaviour
 {
-    public BoxCollider2D collider2D;
+    public BoxCollider2D coll2D;
     public Player player;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        Bounds bounds = collider2D.bounds;
+        Bounds bounds = coll2D.bounds;
         player.groundHeight = bounds.max.y;
-
     }
 }

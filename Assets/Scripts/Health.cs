@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damageToTake;
         healthBar.fillAmount = CalculateHealth();
+
         if (currentHealth <= 0)
         {
             SceneManager.LoadScene("GameOver");

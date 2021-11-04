@@ -11,7 +11,7 @@ public class CTVCamera : MonoBehaviour
 
     private void Start()
     {
-        targetTransform = GameObject.Find("Target").transform;
+        targetTransform = GameObject.Find("Player").transform;
     }
     private void LookAtTarget(Vector2 dir)
     {

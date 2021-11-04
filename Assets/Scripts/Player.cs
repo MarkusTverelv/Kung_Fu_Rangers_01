@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     public float gravity;
     public Vector2 velocity;
 
-    [SerializeField] private int winDistant;
     public float maxXVelocity = 100;
     public float maxAcceleration = 10;
     public float acceleration = 10;
@@ -26,6 +25,8 @@ public class Player : MonoBehaviour
     public float holdJumpTimer = 0.0f;
 
     public float jumpGroundThreshold = 1;
+
+    public LayerMask groundLayerMask;
 
     void Start()
     {
@@ -83,8 +84,11 @@ public class Player : MonoBehaviour
 
             Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y);
             Vector2 rayDirection = Vector2.up;
+
             float rayDistance = velocity.y * Time.fixedDeltaTime;
+
             RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
+
             if (hit2D.collider != null)
             {
                 Ground ground = hit2D.collider.GetComponent<Ground>();
@@ -97,20 +101,16 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+
             Debug.DrawRay(rayOrigin, rayDirection * rayDirection, Color.red);
         }
-        else
+
+        if (transform.position.y <= -10)
         {
             SceneManager.LoadScene("GameOver");
         }
 
         distance += velocity.x * Time.fixedDeltaTime;
-
-        if (distance >= winDistant)
-        {
-            SceneManager.LoadScene("WinScene");
-        }
-
 
         if (isGrounded)
         {
