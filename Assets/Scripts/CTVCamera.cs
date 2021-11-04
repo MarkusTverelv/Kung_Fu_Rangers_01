@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class CTVCamera : MonoBehaviour
 {
-    public Transform targetTransform;
+    public GameObject obstacle;
+    private Transform targetTransform;
+    float timer;
+    public float spawnRate;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        targetTransform = GameObject.Find("Target").transform;
     }
     private void LookAtTarget(Vector2 dir)
     {
@@ -25,7 +22,14 @@ public class CTVCamera : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            timer += Time.deltaTime;
             LookAtTarget(targetTransform.position - transform.position);
+
+            if (timer >= spawnRate)
+            {
+                Instantiate(obstacle, new Vector2(targetTransform.position.x + 5, targetTransform.position.y), Quaternion.identity);
+                timer = 0.0f;
+            }
         }
     }
 }
