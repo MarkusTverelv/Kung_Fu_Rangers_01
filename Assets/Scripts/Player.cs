@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public float gravity;
     public Vector2 velocity;
-    
+    [SerializeField] private int winDistant;  
     public float maxXVelocity = 100;
     public float maxAcceleration = 10;
     public float acceleration = 10;
@@ -93,6 +94,10 @@ public class Player : MonoBehaviour
 
         distance += velocity.x * Time.fixedDeltaTime;
 
+        if (distance >= winDistant )
+        {
+            SceneManager.LoadScene("Win");
+        }
         if (isGrounded)
         {
             float velocityRatio = velocity.x / maxXVelocity;
