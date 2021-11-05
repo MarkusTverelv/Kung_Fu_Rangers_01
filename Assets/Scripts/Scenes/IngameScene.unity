@@ -260,7 +260,7 @@ MonoBehaviour:
   anim: {fileID: 1211832440}
   gravity: -20
   velocity: {x: 0, y: 0}
-  maxXVelocity: 100
+  maxXVelocity: 30
   maxAcceleration: 10
   acceleration: 10
   distance: 0
@@ -1681,7 +1681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487dfd7bd812e3548ad81305c237a855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winDistance: 10000
+  winDistance: 1000
 --- !u!114 &1345425787
 MonoBehaviour:
   m_ObjectHideFlags: 0

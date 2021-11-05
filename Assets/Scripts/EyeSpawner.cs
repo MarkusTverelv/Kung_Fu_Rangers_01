@@ -14,7 +14,10 @@ public class EyeSpawner : MonoBehaviour
 
     private void SpawnEyes()
     {
-        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 5)), Quaternion.identity);
-        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 5)), Quaternion.identity);
+        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 10)), Quaternion.identity);
+        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 10)), Quaternion.identity);
+        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 10)), Quaternion.identity);
+        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 10)), Quaternion.identity);
+        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 10)), Quaternion.identity);
     }
 }
