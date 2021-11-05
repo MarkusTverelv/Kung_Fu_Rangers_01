@@ -22,7 +22,7 @@ public class EyeSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (droneEyes.Count == 0)
+        if (droneEyes.Count < 1)
         {
             droneEyes.Add(eyeDrone);
             droneEyes.Add(eyeDrone);
@@ -33,6 +33,12 @@ public class EyeSpawner : MonoBehaviour
         }
         else
             return;
+
+        foreach (GameObject eye in droneEyes)
+        {
+            if (eye.GetComponent<EnemyHealth>().currentHealth <= 0)
+                droneEyes.Remove(eye);
+        }
     }
 
     private void SpawnEyes(GameObject eye, Transform spawn)

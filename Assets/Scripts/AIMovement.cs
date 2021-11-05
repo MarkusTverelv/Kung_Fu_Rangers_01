@@ -28,7 +28,7 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Instantiate(healthBar, Camera.main.WorldToScreenPoint(transform.position), Quaternion.identity, GameObject.Find("Canvas").transform);
+        Instantiate(healthBar, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform);
     }
 
     // Update is called once per frame

@@ -2,30 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class Laser2 : MonoBehaviour
 {
     public float force;
     public float damage;
 
     private Rigidbody2D rb;
-    private AIMovement aiMove;
+    private Aim aim;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        aiMove = FindObjectOfType<AIMovement>();
+        aim = FindObjectOfType<Aim>();
 
-        transform.up = aiMove.targetDirection;
+        transform.up = aim.aimDirection;
 
         rb.AddForce(transform.up * force, ForceMode2D.Impulse);
-        Destroy(this.gameObject, 1);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Health>().TakeDamage(damage);
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
             Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Obstacle"))
