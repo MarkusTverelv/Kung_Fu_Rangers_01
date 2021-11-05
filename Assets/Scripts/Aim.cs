@@ -12,6 +12,13 @@ public class Aim : MonoBehaviour
     public float timer;
     public float fireRate;
 
+    SpriteRenderer sr;
+
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -24,6 +31,7 @@ public class Aim : MonoBehaviour
 
         if (Input.GetMouseButton(0) && timer >= fireRate)
             Shoot();
+
     }
     private void LookAtTarget(Vector2 dir)
     {

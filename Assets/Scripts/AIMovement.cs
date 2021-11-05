@@ -5,8 +5,6 @@ using UnityEngine;
 public class AIMovement : MonoBehaviour
 {
     public GameObject laser;
-    public GameObject healthBar;
-
     public Vector2 targetDirection = Vector2.zero;
 
     public float moveSpeed;
@@ -28,21 +26,18 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Instantiate(healthBar, transform.position, Quaternion.identity, GameObject.Find("Canvas").transform);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 followPosition = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + .6f, transform.position.z));
-        healthBar.transform.position = followPosition;
-
         targetDirection = targetTransform.position - transform.position;
         distanceToTarget = targetDirection.magnitude;
 
         LookAtTarget(targetDirection);
         MoveTowardsTarget(distanceToTarget);
     }
+
     private void LookAtTarget(Vector2 dir)
     {
         float lookAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
