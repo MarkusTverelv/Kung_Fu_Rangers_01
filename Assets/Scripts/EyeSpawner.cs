@@ -7,42 +7,14 @@ public class EyeSpawner : MonoBehaviour
     public GameObject eyeDrone;
     public Transform spawnPoint;
 
-    private List<GameObject> droneEyes = new List<GameObject>();
-
-    private void Awake()
+    private void Start()
     {
-        droneEyes.Add(eyeDrone);
-        droneEyes.Add(eyeDrone);
-        droneEyes.Add(eyeDrone);
-
-        foreach (GameObject eye in droneEyes)
-            SpawnEyes(eye, spawnPoint);
+        InvokeRepeating("SpawnEyes", 3f, 10f);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SpawnEyes()
     {
-        foreach (GameObject eye in droneEyes)
-        {
-            if (eye == null)
-                droneEyes.Remove(eye);
-        }
-
-        if (droneEyes.Count <= 0)
-        {
-            droneEyes.Add(eyeDrone);
-            droneEyes.Add(eyeDrone);
-            droneEyes.Add(eyeDrone);
-
-            foreach (GameObject eye in droneEyes)
-                SpawnEyes(eye, spawnPoint);
-        }
-        else
-            return;
-    }
-
-    private void SpawnEyes(GameObject eye, Transform spawn)
-    {
-        Instantiate(eye, new Vector2(spawn.position.x, spawn.position.y + Random.Range(-5, 5)), Quaternion.identity);
+        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 5)), Quaternion.identity);
+        Instantiate(eyeDrone, new Vector2(spawnPoint.position.x, spawnPoint.position.y + Random.Range(-5, 5)), Quaternion.identity);
     }
 }

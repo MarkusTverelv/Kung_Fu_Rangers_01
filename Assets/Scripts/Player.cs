@@ -59,6 +59,11 @@ public class Player : MonoBehaviour
             isHoldingJump = false;
             ChangeAnimation("Player_Fall");
         }
+
+        if (isGrounded)
+        {
+            ChangeAnimation("Player_Run");
+        }
     }
 
     public void ChangeAnimation(string newAnimation)

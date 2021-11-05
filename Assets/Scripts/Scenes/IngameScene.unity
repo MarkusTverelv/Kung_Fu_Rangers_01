@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 164031499}
   - component: {fileID: 164031500}
   - component: {fileID: 164031502}
+  - component: {fileID: 164031503}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -256,14 +257,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e6c238b5dce1241b93ca281bf03195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  gravity: -10
+  anim: {fileID: 1211832440}
+  gravity: -20
   velocity: {x: 0, y: 0}
   maxXVelocity: 100
   maxAcceleration: 10
   acceleration: 10
   distance: 0
-  jumpVelocity: 7
+  jumpVelocity: 12
   groundHeight: -2.13
   isGrounded: 0
   spriteRenderer: {fileID: 927193964}
@@ -315,6 +316,7 @@ Transform:
   - {fileID: 927193963}
   - {fileID: 712073243}
   - {fileID: 1211832438}
+  - {fileID: 2024635676}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -331,6 +333,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 766121456}
+--- !u!114 &164031503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164031498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9922135b8e72ba1498a75d280e2647f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimDirection: {x: 0, y: 0}
+  laser: {fileID: 380324897728498500, guid: 0a3e728511d715e4a81fa78bbb73195f, type: 3}
+  firePoint: {fileID: 2024635676}
+  timer: 0
+  fireRate: 0.4
 --- !u!1 &437454432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimDirection: {x: 0, y: 0}
   laser: {fileID: 380324897728498500, guid: 0a3e728511d715e4a81fa78bbb73195f, type: 3}
+  firePoint: {fileID: 0}
   timer: 0
   fireRate: 0.5
 --- !u!1 &740167105
@@ -1052,7 +1072,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740167105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.89, y: 0, z: 0}
+  m_LocalPosition: {x: 10.89, y: 3.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 655588310}
@@ -1891,3 +1911,33 @@ MonoBehaviour:
   minY: 0
   maxY: 0
   resetX: 0
+--- !u!1 &2024635675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2024635676}
+  m_Layer: 0
+  m_Name: FirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2024635676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024635675}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.013, y: 0.181, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 164031501}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

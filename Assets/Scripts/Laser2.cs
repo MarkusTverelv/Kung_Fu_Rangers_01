@@ -20,7 +20,7 @@ public class Laser2 : MonoBehaviour
         rb.AddForce(transform.up * force, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -31,6 +31,6 @@ public class Laser2 : MonoBehaviour
             Destroy(this.gameObject);
 
         else
-            Destroy(this.gameObject, 3);
+            Destroy(this.gameObject, 1);
     }
 }

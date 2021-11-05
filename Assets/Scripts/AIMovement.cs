@@ -36,6 +36,16 @@ public class AIMovement : MonoBehaviour
 
         LookAtTarget(targetDirection);
         MoveTowardsTarget(distanceToTarget);
+
+        if (Vector2.Distance(targetTransform.position, transform.position) <= 15)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= fireRate + Random.Range(.1f, .5f))
+                FireLaser(laser);
+        }
+        else
+            return;
     }
 
     private void LookAtTarget(Vector2 dir)
@@ -53,17 +63,6 @@ public class AIMovement : MonoBehaviour
 
         else if (distance <= MAX_DISTANCE_TO_TARGET)
             transform.RotateAround(targetTransform.position, Vector3.forward, 50 * Time.deltaTime);
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= fireRate)
-                FireLaser(laser);
-        }
     }
 
     private void FireLaser(GameObject laser)

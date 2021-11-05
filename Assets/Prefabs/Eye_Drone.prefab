@@ -278,7 +278,6 @@ GameObject:
   - component: {fileID: 8464489275583750387}
   - component: {fileID: 8464489275583750385}
   - component: {fileID: 8464489275583750384}
-  - component: {fileID: 1952337715241438171}
   - component: {fileID: 3027547871212284264}
   - component: {fileID: 8373507746164645591}
   m_Layer: 0
@@ -372,7 +371,7 @@ MonoBehaviour:
   laser: {fileID: 3826196112684786987, guid: ee120144c638ec241a620c575c5b94c8, type: 3}
   targetDirection: {x: 0, y: 0}
   moveSpeed: 4
-  fireRate: 1
+  fireRate: 1.5
   timer: 0
 --- !u!50 &8464489275583750384
 Rigidbody2D:
@@ -395,22 +394,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &1952337715241438171
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464489275583750391}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 6
 --- !u!58 &3027547871212284264
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -426,7 +409,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &8373507746164645591
 MonoBehaviour:
   m_ObjectHideFlags: 0

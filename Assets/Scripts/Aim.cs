@@ -8,6 +8,7 @@ public class Aim : MonoBehaviour
     public Vector2 aimDirection;
 
     public GameObject laser;
+    public Transform firePoint;
 
     public float timer;
     public float fireRate;
@@ -22,28 +23,20 @@ public class Aim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        aimDirection = mousePos - transform.position;
-
-        LookAtTarget(aimDirection);
-
         timer += Time.deltaTime;
 
         if (Input.GetMouseButton(0) && timer >= fireRate)
             Shoot();
-
-    }
-    private void LookAtTarget(Vector2 dir)
-    {
-        float lookAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, lookAngle);
     }
 
     private void Shoot()
     {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        aimDirection = mousePos - transform.position;
+
         aimDirection.Normalize();
 
-        Instantiate(laser, transform.position, Quaternion.identity);
+        Instantiate(laser, firePoint.position, Quaternion.identity);
 
         timer = 0.0f;
     }
