@@ -11,6 +11,9 @@ public class AIMovement : MonoBehaviour
     public float fireRate;
     public float timer;
 
+    private AudioSource audioSource;
+    public AudioClip laserSFX;
+
     private Rigidbody2D rb;
     private Transform targetTransform;
 
@@ -20,6 +23,7 @@ public class AIMovement : MonoBehaviour
     private void Awake()
     {
         targetTransform = GameObject.Find("Player").transform;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -67,6 +71,7 @@ public class AIMovement : MonoBehaviour
 
     private void FireLaser(GameObject laser)
     {
+        audioSource.PlayOneShot(laserSFX);
         Instantiate(laser, this.transform.Find("FirePoint").position, transform.rotation);
         timer = 0.0f;
     }

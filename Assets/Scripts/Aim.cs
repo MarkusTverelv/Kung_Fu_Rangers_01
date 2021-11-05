@@ -13,11 +13,15 @@ public class Aim : MonoBehaviour
     public float timer;
     public float fireRate;
 
+    private AudioSource audioSource;
+    public AudioClip laserSFX;
+
     SpriteRenderer sr;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,6 +41,7 @@ public class Aim : MonoBehaviour
         aimDirection.Normalize();
 
         Instantiate(laser, firePoint.position, Quaternion.identity);
+        audioSource.PlayOneShot(laserSFX);
 
         timer = 0.0f;
     }
