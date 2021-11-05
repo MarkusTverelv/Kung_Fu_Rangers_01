@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public Animator anim;
+    private string currentAnimation;
+
     public float gravity;
     public Vector2 velocity;
 
@@ -47,12 +50,23 @@ public class Player : MonoBehaviour
                 velocity.y = jumpVelocity;
                 isHoldingJump = true;
                 holdJumpTimer = 0;
+                ChangeAnimation("Player_Jump");
             }
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
             isHoldingJump = false;
+            ChangeAnimation("Player_Fall");
+        }
+    }
+
+    public void ChangeAnimation(string newAnimation)
+    {
+        if (newAnimation != currentAnimation)
+        {
+            anim.Play(newAnimation);
+            currentAnimation = newAnimation;
         }
     }
 

@@ -26,6 +26,7 @@ public class Laser : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Health>().TakeDamage(damage);
+            other.gameObject.GetComponent<Player>().ChangeAnimation("Player_Hit");
             Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Obstacle"))
